@@ -33,7 +33,7 @@ function NavItem({ item }) {
   const { title, path, icon, info } = item;
 
   return (
-    <StyledNavItem
+    <StyledNavItem 
       component={RouterLink}
       to={path}
       sx={{

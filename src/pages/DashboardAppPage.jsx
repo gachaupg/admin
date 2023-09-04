@@ -1,6 +1,7 @@
-import { Helmet } from "react-helmet-async";
-import { faker } from "@faker-js/faker";
-import * as React from "react";
+import { Helmet } from 'react-helmet-async';
+import { faker } from '@faker-js/faker';
+import * as React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import { useTheme } from "@mui/material/styles";
 import { Grid, Container, Typography } from "@mui/material";
@@ -261,52 +262,43 @@ export default function DashboardAppPage() {
         <title> Dashboard </title>
       </Helmet>
 
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" >
         <Typography variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome back {user.name}
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
-            {/* {users.map((mary)=>{
+          <Grid item xs={12} sm={6} md={3}  >
+           {/* {users.map((mary)=>{
             return(
               <>
               {new Date}
               </>
             )
            })} */}
-            <AppWidgetSummary
-              title="Total Orders"
-              total={totalPrice}
-              icon={"ant-design:money"}
-            />
+            <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FE0000"}}
+         
+          title="Weekly Sales" total={714000} 
+         
+          icon={'ant-design:android-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary
-              title="New Users"
-              total={orders.length}
-              color="info"
-              icon={"ant-design:ale-filled"}
-            />
+            <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FEC400"}}
+             title="New Users" total={orders.length} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary
-              title="Item Orders"
-              total={users.length}
-              color="warning"
-              icon={"ant-design:widows-filled"}
-            />
+            <AppWidgetSummary className="cardsdash"
+            style={{backgroundColor:"#00D247"}}
+            title="Item Orders" total={users.length} color="warning" icon={'ant-design:windows-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary
-              title="Total Products"
-              total={products.length}
-              color="error"
-              icon={"ant-design:bug-fled"}
-            />
+            
+            <AppWidgetSummary  className="cardsdash"
+             style={{backgroundColor:"#2669FE"}}
+            title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
@@ -338,7 +330,7 @@ export default function DashboardAppPage() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentVisits
+            <AppCurrentVisits 
               title="Current Visits"
               chartData={[
                 { label: "Amount", value: totalPrice },
@@ -376,7 +368,7 @@ export default function DashboardAppPage() {
           </Grid> 
          
           <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentSubject
+            <AppCurrentSubject 
               title="Current Subject"
               chartLabels={['Monday', 'Tuesday', 'Wenesday', 'Thursday', 'Friday', 'Saturday','Friday']}
               chartData={[
@@ -386,43 +378,80 @@ export default function DashboardAppPage() {
               ]}
               chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
             />
-          </Grid> 
-          {/* <Grid item xs={12} mt={12} md={6} lg={8}>
-  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-    <thead>
+          </Grid>
+
+           {/* <div className='cardppl'>
+  <MDBTable className='table'>
+    <caption>List of users</caption>
+    <MDBTableHead>
       <tr>
-        <th style={{ textAlign: 'left' }}>Name</th>
-        <th style={{ textAlign: 'left' }}>Email</th>
-        <th style={{ textAlign: 'left' }}>Address</th>
-        <th style={{ textAlign: 'right' }}>Amount</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Handle</th>
       </tr>
-    </thead>
-    <tbody>
+    </MDBTableHead>
+    <MDBTableBody>
       {users.map((user) => (
-        <tr style={{ marginLeft: '2rem' }} key={user._id}>
-          <td style={{ textAlign: 'left' }}>{user.name}</td>
-          <td style={{ textAlign: 'left' }}>{user.email}</td>
-          <td style={{ textAlign: 'left' }}>{user.address}</td>
-          <td style={{ textAlign: 'right' }}>{user.cartTotalAmount}</td>
+        <tr key={user.id}> 
+          <td>{user.name}</td>
+          <td>{user.email}</td>
+          <td>{user.address}</td>
+          <td>1</td>
         </tr>
       ))}
-    </tbody>
-  </table>
-</Grid> */}
+    </MDBTableBody>
+  </MDBTable>
+</div>  */}
 
-          <Grid item xs={12} md={6} mt={12} lg={4}>
-            <>
-              <AppOrderTimeline
-                title="Order Timeline"
-                list={time.map((item) => ({
-                  id: item._id,
-                  name: item.email,
 
-                  title: formatCreatedAt(item.createdAt),
-                  // Assuming this is the "time" you want to display
-                }))}
-              />
-            </>
+<div className='cardppl'>
+  <div className='table-wrapper'>
+    <MDBTable className='table'>
+      <caption>List of users</caption>
+      <MDBTableHead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Handle</th>
+        </tr>
+      </MDBTableHead>
+      <MDBTableBody>
+        {users.map((user) => (
+          <tr key={user.id}>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.address}</td>
+            <td>1</td>
+          </tr>
+        ))}
+      </MDBTableBody>
+    </MDBTable>
+  </div>
+</div>
+
+
+
+
+
+
+          <Grid item xs={12} md={6} lg={4}>
+            <AppOrderTimeline
+              title="Order Timeline"
+              list={[...Array(5)].map((_, index) => ({
+                id: faker.datatype.uuid(),
+                title: [
+                  '1983, orders, $4220',
+                  '12 Invoices have been paid',
+                  'Order #37745 from September',
+                  'New order placed #XF-2356',
+                  'New order placed #XF-2346',
+                ][index],
+                type: `order${index + 1}`,
+                time: faker.date.past(),
+              }))}
+            />
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
