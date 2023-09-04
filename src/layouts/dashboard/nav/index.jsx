@@ -79,7 +79,7 @@ export default function Nav({ openNav, onCloseNav }) {
       </Box>
 
       <NavSection data={navConfig} />
-hhh
+
       <Box sx={{ flexGrow: 1 }} />
 
       {/* <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>

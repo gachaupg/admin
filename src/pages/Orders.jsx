@@ -8,21 +8,19 @@ import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
-import { productsDelete } from '../slices/productsSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Product Name', alignRight: false },
-  { id: 'price', label: 'price', alignRight: false },
-  { id: 'desc', label: 'Description', alignRight: false },
-  { id: 'brand', label: 'Category', alignRight: false },
-  { id: 'delete', label: 'Rating', alignRight: false },
-  { id: 'delete', label: 'Delete', alignRight: false },
+  { id: 'name', label: 'Name', alignRight: false },
+  { id: 'email', label: 'Email', alignRight: false },
+  { id: 'address', label: 'address', alignRight: false },
+
+  { id: 'cartTotalAmount', label: 'Amount', alignRight: false },
+ 
 
   { id: '' },
 ];
+
+
 function compare(a, b) {
   if (a._id < b._id) {
     return 1;
@@ -32,14 +30,6 @@ function compare(a, b) {
   }
   return 0;
 }
-
-const excerpt = (str) => {
-    if (str.length > 20) {
-      str = str.substring(0, 15) + " .";
-    }
-    return str;
-  };
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -49,7 +39,12 @@ function descendingComparator(a, b, orderBy) {
   }
   return 0;
 }
-
+const excerpt = (str) => {
+  if (str.length > 20) {
+    str = str.substring(0, 15) + " ..";
+  }
+  return str;
+};
 function getComparator(order, orderBy) {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
@@ -69,7 +64,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function UserPage() {
+export default function Orders() {
   const [open, setOpen] = useState(null);
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
@@ -79,16 +74,16 @@ export default function UserPage() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-const dispatch=useDispatch()
+
   useEffect(() => {
     async function fetchData() {
       try {
         const res = await axios.get(
-          `https://ecommerce-lxo3.onrender.com/api/products`
+          `https://ecommerce-lxo3.onrender.com/api`
         );
         res.data.sort(compare);
-        // const result = res.data.filter((_, index) => index < 0);
-        setUsers(res.data);
+        const result = res.data.filter((_, index) => index < 30);
+        setUsers(result);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -155,35 +150,28 @@ const dispatch=useDispatch()
   const filteredUsers = applySortFilter(users, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && !!filterName;
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this tour ?")) {
-      dispatch(productsDelete({ id, toast }));
-    }
-  };
 
   return (
     <>
       <Helmet>
-        <title> Products List  </title>
+        <title> Orders </title>
       </Helmet>
 
-      <Container >
+      <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-           Products
+          All  Orders
           </Typography>
-          <Link to='/new-product'>
-        <Button style={{backgroundColor:'green',color:'white'}}  variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Product
-          </Button>
-        </Link>
+          {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+            New User
+          </Button> */}
         </Stack>
 
-        <Card >
+        <Card>
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
 
           <Scrollbar>
-            <TableContainer  sx={{ minWidth: 800}}>
+            <TableContainer sx={{ minWidth: 800 }}>
               <Table>
                 <UserListHead
                   order={order}
@@ -196,7 +184,7 @@ const dispatch=useDispatch()
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const {_id, name, price, desc, task,brand, avatarUrl, isAdmin } = row;
+                    const {_id, name, address, status, email, cartTotalAmount, isAdmin } = row;
                     const selectedUser = selected.indexOf(_id) !== -1;
 
                     return (
@@ -208,32 +196,24 @@ const dispatch=useDispatch()
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
                             <Typography variant="subtitle2" noWrap>
-                              { excerpt(name)}
+                              {name}
                             </Typography>
                           </Stack>
                         </TableCell>
 
 
-                        <TableCell align="left">$ {price}</TableCell>
+                        <TableCell align="left">{excerpt(email) }</TableCell>
 
-                        <TableCell align="left">{excerpt(desc)}</TableCell>
+                        <TableCell align="left">{address}</TableCell>
                         {/* <TableCell align="left">{status ? 'Ac' : 'User'}</TableCell> */}
 
                         <TableCell align="left">
-                        <TableCell align="left">{brand}</TableCell>
+                        <TableCell align="left"> ${cartTotalAmount}</TableCell>
                         </TableCell>
-                        <TableCell align="left">{task}</TableCell>
-                        <TableCell
-                    key={row._id}
-                    style={{ color: "red", cursor: "pointer" }}
-                    onClick={() => handleDelete(_id)}
-                  >
-                    Delete
-                  </TableCell>
+                        {/* <TableCell align="left"></TableCell> */}
+
                         <TableCell align="right">
-                          <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-                            <Iconify icon={'eva:more-vertical-fill'} />
-                          </IconButton>
+                          
                         </TableCell>
                       </TableRow>
                     );
