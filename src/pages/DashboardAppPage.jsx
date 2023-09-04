@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 import * as React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
@@ -112,13 +113,13 @@ console.log(totalMinutes);
         <title> Dashboard | Minimal UI </title>
       </Helmet>
 
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" >
         <Typography variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome back {user.name}
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3}  >
            {/* {users.map((mary)=>{
             return(
               <>
@@ -126,19 +127,29 @@ console.log(totalMinutes);
               </>
             )
            })} */}
-            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FE0000"}}
+         
+          title="Weekly Sales" total={714000} 
+         
+          icon={'ant-design:android-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={orders.length} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FEC400"}}
+             title="New Users" total={orders.length} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={users.length} color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary className="cardsdash"
+            style={{backgroundColor:"#00D247"}}
+            title="Item Orders" total={users.length} color="warning" icon={'ant-design:windows-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+            
+            <AppWidgetSummary  className="cardsdash"
+             style={{backgroundColor:"#2669FE"}}
+            title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
@@ -182,7 +193,7 @@ console.log(totalMinutes);
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentVisits
+            <AppCurrentVisits 
               title="Current Visits"
               chartData={[
                 { label: 'America', value: 4344 },
@@ -219,7 +230,7 @@ console.log(totalMinutes);
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentSubject
+            <AppCurrentSubject 
               title="Current Subject"
               chartLabels={['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math']}
               chartData={[
@@ -231,47 +242,61 @@ console.log(totalMinutes);
             />
           </Grid>
 
-      <div style={{width:'27rem'}}>
-       {
-        users.map((user)=>{
-          return (
-            <>
-            <MDBTable className='caption-top'>
+           {/* <div className='cardppl'>
+  <MDBTable className='table'>
+    <caption>List of users</caption>
+    <MDBTableHead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Handle</th>
+      </tr>
+    </MDBTableHead>
+    <MDBTableBody>
+      {users.map((user) => (
+        <tr key={user.id}> 
+          <td>{user.name}</td>
+          <td>{user.email}</td>
+          <td>{user.address}</td>
+          <td>1</td>
+        </tr>
+      ))}
+    </MDBTableBody>
+  </MDBTable>
+</div>  */}
+
+
+<div className='cardppl'>
+  <div className='table-wrapper'>
+    <MDBTable className='table'>
       <caption>List of users</caption>
       <MDBTableHead>
         <tr>
-          <th scope='col'>#</th>
-          <th scope='col'>First</th>
-          <th scope='col'>Last</th>
-          <th scope='col'>Handle</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Handle</th>
         </tr>
       </MDBTableHead>
       <MDBTableBody>
-        <tr>
-          <th scope='row'>1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope='row'>2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope='row'>3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {users.map((user) => (
+          <tr key={user.id}>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.address}</td>
+            <td>1</td>
+          </tr>
+        ))}
       </MDBTableBody>
     </MDBTable>
-            </>
-          )
-        })
-       }
-      </div>
+  </div>
+</div>
+
+
+
+
+
 
           <Grid item xs={12} md={6} lg={4}>
             <AppOrderTimeline

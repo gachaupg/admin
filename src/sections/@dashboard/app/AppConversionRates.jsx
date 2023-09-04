@@ -39,7 +39,7 @@ export default function AppConversionRates({ title, subheader, chartData, ...oth
   });
 
   return (
-    <Card {...other}>
+    <Card {...other} >
       <CardHeader title={title} subheader={subheader} />
 
       <Box sx={{ mx: 3 }} dir="ltr">
