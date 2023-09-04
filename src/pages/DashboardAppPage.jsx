@@ -1,13 +1,19 @@
-import { Helmet } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
-import * as React from 'react';
+import { Helmet } from "react-helmet-async";
+import { faker } from "@faker-js/faker";
+import * as React from "react";
 
-import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { Grid, Container, Typography } from "@mui/material";
 // components
-import Iconify from '../components/iconify';
-import moment from 'moment';
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import Iconify from "../components/iconify";
+import moment from "moment";
+import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
+import Link from "@mui/material/Link";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
 // sections
 import {
@@ -20,96 +26,239 @@ import {
   AppWidgetSummary,
   AppCurrentSubject,
   AppConversionRates,
-} from '../sections/@dashboard/app';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+} from "../sections/@dashboard/app";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Title from "./Title";
 
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
   const [startTime, setStartTime] = React.useState(moment()); // Set your start time
-  const [endTime, setEndTime] = React.useState(moment()); 
-
+  const [endTime, setEndTime] = React.useState(moment());
 
   const user = useSelector((state) => state.auth);
-// const [value, setValue] = useState(3);
-function compare(a, b) {
-  if (a._id < b._id) {
-    return 1;
+  // const [value, setValue] = useState(3);
+  function compare(a, b) {
+    if (a._id < b._id) {
+      return 1;
+    }
+    if (a._id > b._id) {
+      return -1;
+    }
+    return 0;
   }
-  if (a._id > b._id) {
-    return -1;
-  }
-  return 0;
-}
 
-const { items: data, status } = useSelector((state) => state.products);
-const dispatch = useDispatch();
-const navigate = useNavigate();
-const [users, setUsers] = React.useState([]);
-const [orders, setOrders] = React.useState([]);
-// const { data, error, isLoading } = useGetAllProductsQuery();
-const duration = moment.duration(endTime.diff(startTime));
+  const { items: data, status } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [users, setUsers] = React.useState([]);
+  const [orders, setOrders] = React.useState([]);
+  // const { data, error, isLoading } = useGetAllProductsQuery();
+  const duration = moment.duration(endTime.diff(startTime));
 
   // Format the duration as hours, minutes, and seconds
   const formattedDuration = `${duration.hours()} hours, ${duration.minutes()} minutes, ${duration.seconds()} seconds`;
+  const [time, setTime] = React.useState([]);
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(`https://ecommerce-lxo3.onrender.com/api`);
 
-console.log(formattedDuration);
-React.useEffect(() => {
-  async function fetchData() {
-    try {
-      const res = await axios.get(
-        `https://ecommerce-lxo3.onrender.com/api`
-      );
-
-      res.data.sort(compare);
-      const result = res.data.filter((_, index) => index < 5);
-      setUsers(result);
-      console.log('orders',users);
-    } catch (error) {
-      console.log(error);
+        res.data.sort(compare);
+        const result = res.data.filter((_, index) => index < 5);
+        setTime(result);
+        console.log("orders", users);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
-  fetchData();
-}, []);
-React.useEffect(() => {
-  async function fetchData() {
-    try {
-      const res = await axios.get(
-        `https://ecommerce-lxo3.onrender.com/api/users/stats/all`
-      );
+    fetchData();
+  }, []);
+  const [week,setWeek]=React.useState([])
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(`https://ecommerce-lxo3.onrender.com/api`);
 
-      res.data.sort(compare);
-      // const result = res.data.filter((_, index) => index < 20);
-      setOrders(res.data);
-      console.log('orders',users);
-    } catch (error) {
-      console.log(error);
+        res.data.sort(compare);
+        const result = res.data.filter((_, index) => index < 4);
+        setWeek(result);
+        console.log("orders", users);
+      } catch (error) {
+        console.log(error);
+      }
     }
+    fetchData();
+  }, []);
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(`https://ecommerce-lxo3.onrender.com/api`);
+
+        res.data.sort(compare);
+        const result = res.data.filter((_, index) => index < 12);
+        setUsers(result);
+        console.log("orders", users);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+  const [products, setProducts] = React.useState([]);
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(
+          `https://ecommerce-lxo3.onrender.com/api/products`
+        );
+
+        res.data.sort(compare);
+        const result = res.data.filter((_, index) => index < 12);
+        setProducts(res.data);
+        // console.log('orders',users);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(
+          `https://ecommerce-lxo3.onrender.com/api/users/stats/all`
+        );
+
+        res.data.sort(compare);
+        // const result = res.data.filter((_, index) => index < 20);
+        setOrders(res.data);
+        console.log("orders", users);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+  const totalPrice = users.reduce((sum, user) => sum + user.cartTotalAmount, 0);
+  const TotalDay = week.reduce((sum, user) => sum + user.cartTotalAmount, 0);
+  const totalPriceByMonth = Array.from({ length: 7 }, (_, month) => {
+    // Filter users for the specified month (from June to December)
+    const usersInMonth = users.filter(user => {
+      const userMonth = new Date(user.date).getMonth() + 1; // +1 because getMonth() returns 0-based month index
+      return userMonth === (month + 6); // Add 6 to match June (6) to December (12)
+    });
+  
+    // Calculate the total price for the users in this month
+    const totalInMonth = usersInMonth.reduce((sum, user) => sum + user.cartTotalAmount, 0);
+  
+    return totalInMonth;
+  });
+  
+  console.log('hehe', totalPriceByMonth);
+  
+  // console.log(users[0].createdAt);
+
+  const dateString = "2023-08-27T10:29:08.732Z";
+
+  // Parse the ISO date string into a JavaScript Date object
+  const dateObject = new Date(dateString);
+
+  // Calculate the total minutes
+  const totalMinutes = dateObject.getHours();
+  console.log(totalMinutes);
+  function formatCreatedAt(dateString) {
+    const date = new Date(dateString);
+
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+
+    return date.toLocaleDateString(undefined, options);
   }
-  fetchData();
-}, []);
-const totalPrice = users.reduce((sum, user) => sum + user.cartTotalAmount, 0);
 
-// console.log(users[0].createdAt);
-
-const dateString = '2023-08-27T10:29:08.732Z';
-
-// Parse the ISO date string into a JavaScript Date object
-const dateObject = new Date(dateString);
-
-// Calculate the total minutes
-const totalMinutes = dateObject.getHours() 
-console.log(totalMinutes);
-
+  // Call the function with a date string and log the result
+  // const formattedDate = formatCreatedAt('2023-09-02T12:30:00'); // Replace '2023-09-02T12:30:00' with your actual date string
+  // console.log(formattedDate);
 
   const theme = useTheme();
+  // Function to generate an array of default month labels for a year
+  function generateDateLabels() {
+    const dateLabels = [];
+    const startDate = new Date("01/01/2003");
+    const endDate = new Date("12/01/2003");
+
+    let currentDate = startDate;
+
+    while (currentDate <= endDate) {
+      const formattedDate = currentDate.toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+      dateLabels.push(formattedDate);
+      currentDate.setMonth(currentDate.getMonth() + 1);
+    }
+
+    return dateLabels;
+  }
+
+  // Example usage:
+  const [chartData, setChartData] = React.useState([]);
+  const [chartLabels, setChartLabels] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get("https://ecommerce-lxo3.onrender.com/api"); // Replace with your API endpoint
+
+        // Extract data from the API response and set it in the state
+        const data = res.data;
+
+        // Modify data and labels as needed to match your API response
+        const modifiedData = [
+          {
+            name: "Total Orders",
+            type: "column",
+            fill: "solid",
+            data: data.map((item) => chartData.length),
+          },
+          {
+            name: "Amount",
+            type: "area",
+            fill: "gradient",
+            data: data.map((item) => 10),
+          },
+          {
+            name: "Months",
+            type: "line",
+            fill: "solid",
+            data: data.map((item) => 3),
+          },
+        ];
+
+        const modifiedLabels = data.map((item) => item.label);
+
+        setChartData(modifiedData);
+        setChartLabels(modifiedLabels);
+      } catch (error) {
+        console.error("Error fetching data from API:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <>
       <Helmet>
-        <title> Dashboard | Minimal UI </title>
+        <title> Dashboard </title>
       </Helmet>
 
       <Container maxWidth="xl">
@@ -119,62 +268,69 @@ console.log(totalMinutes);
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-           {/* {users.map((mary)=>{
+            {/* {users.map((mary)=>{
             return(
               <>
               {new Date}
               </>
             )
            })} */}
-            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary
+              title="Total Orders"
+              total={totalPrice}
+              icon={"ant-design:money"}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={orders.length} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary
+              title="New Users"
+              total={orders.length}
+              color="info"
+              icon={"ant-design:ale-filled"}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={users.length} color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary
+              title="Item Orders"
+              total={users.length}
+              color="warning"
+              icon={"ant-design:widows-filled"}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary
+              title="Total Products"
+              total={products.length}
+              color="error"
+              icon={"ant-design:bug-fled"}
+            />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
             <AppWebsiteVisits
-              title="Website Visits"
+              title="Orders "
               subheader="(+43%) than last year"
-              chartLabels={[
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
-              ]}
+              chartLabels={generateDateLabels}
               chartData={[
                 {
-                  name: 'Team A',
-                  type: 'column',
-                  fill: 'solid',
+                  name: "Amount",
+                  type: "column",
+                  fill: "solid",
                   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
                 },
                 {
-                  name: 'Team B',
-                  type: 'area',
-                  fill: 'gradient',
+                  name: "Orders",
+                  type: "area",
+                  fill: "gradient",
                   data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
                 },
                 {
-                  name: 'Team C',
-                  type: 'line',
-                  fill: 'solid',
+                  name: "Months",
+                  type: "line",
+                  fill: "solid",
                   data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
                 },
               ]}
@@ -185,10 +341,10 @@ console.log(totalMinutes);
             <AppCurrentVisits
               title="Current Visits"
               chartData={[
-                { label: 'America', value: 4344 },
-                { label: 'Asia', value: 5435 },
-                { label: 'Europe', value: 1443 },
-                { label: 'Africa', value: 4443 },
+                { label: "Amount", value: totalPrice },
+                { label: "Users", value: orders.length },
+                { label: "Orders", value: users.length },
+                // { label: 'Time', value: 2927 },
               ]}
               chartColors={[
                 theme.palette.primary.main,
@@ -198,97 +354,75 @@ console.log(totalMinutes);
               ]}
             />
           </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppConversionRates
-              title="Conversion Rates"
-              subheader="(+43%) than last year"
+ <Grid item xs={12} md={6} lg={8}>
+        <AppConversionRates
+              title="Five Last Amount Earned"
+              subheader="Monthhs analysis"
               chartData={[
-                { label: 'Italy', value: 400 },
-                { label: 'Japan', value: 430 },
-                { label: 'China', value: 448 },
-                { label: 'Canada', value: 470 },
-                { label: 'France', value: 540 },
-                { label: 'Germany', value: 580 },
-                { label: 'South Korea', value: 690 },
-                { label: 'Netherlands', value: 1100 },
-                { label: 'United States', value: 1200 },
-                { label: 'United Kingdom', value: 1380 },
+                { label: 'january', value: totalPrice },
+                { label: 'february', value: totalPrice },
+                { label: 'march', value: totalPrice },
+                { label: 'april', value: totalPrice },
+                { label: 'may', value: totalPrice },
+                { label: 'june', value: totalPrice },
+                { label: 'july', value: totalPrice },
+                { label: 'august', value: totalPrice },
+                { label: 'september', value: totalPrice },
+                { label: 'octomber', value: totalPrice },
+                { label: 'november', value: totalPrice },
+                { label: 'december', value: totalPrice },
               ]}
             />
-          </Grid>
-
+          </Grid> 
+         
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentSubject
               title="Current Subject"
-              chartLabels={['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math']}
+              chartLabels={['Monday', 'Tuesday', 'Wenesday', 'Thursday', 'Friday', 'Saturday']}
               chartData={[
-                { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-                { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-                { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
+                { name: 'Amount', data: [TotalDay,TotalDay,TotalDay] },
+                { name: 'Amount', data: [TotalDay,TotalDay,TotalDay] },
+                { name: 'Amount', data: [TotalDay,TotalDay,TotalDay] },
               ]}
               chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
             />
-          </Grid>
+          </Grid> 
+          {/* <Grid item xs={12} mt={12} md={6} lg={8}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: 'left' }}>Name</th>
+        <th style={{ textAlign: 'left' }}>Email</th>
+        <th style={{ textAlign: 'left' }}>Address</th>
+        <th style={{ textAlign: 'right' }}>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      {users.map((user) => (
+        <tr style={{ marginLeft: '2rem' }} key={user._id}>
+          <td style={{ textAlign: 'left' }}>{user.name}</td>
+          <td style={{ textAlign: 'left' }}>{user.email}</td>
+          <td style={{ textAlign: 'left' }}>{user.address}</td>
+          <td style={{ textAlign: 'right' }}>{user.cartTotalAmount}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</Grid> */}
 
-      <div style={{width:'27rem'}}>
-       {
-        users.map((user)=>{
-          return (
+          <Grid item xs={12} md={6} mt={12} lg={4}>
             <>
-            <MDBTable className='caption-top'>
-      <caption>List of users</caption>
-      <MDBTableHead>
-        <tr>
-          <th scope='col'>#</th>
-          <th scope='col'>First</th>
-          <th scope='col'>Last</th>
-          <th scope='col'>Handle</th>
-        </tr>
-      </MDBTableHead>
-      <MDBTableBody>
-        <tr>
-          <th scope='row'>1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope='row'>2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope='row'>3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </MDBTableBody>
-    </MDBTable>
-            </>
-          )
-        })
-       }
-      </div>
+              <AppOrderTimeline
+                title="Order Timeline"
+                list={time.map((item) => ({
+                  id: item._id,
+                  name: item.email,
 
-          <Grid item xs={12} md={6} lg={4}>
-            <AppOrderTimeline
-              title="Order Timeline"
-              list={[...Array(5)].map((_, index) => ({
-                id: faker.datatype.uuid(),
-                title: [
-                  '1983, orders, $4220',
-                  '12 Invoices have been paid',
-                  'Order #37745 from September',
-                  'New order placed #XF-2356',
-                  'New order placed #XF-2346',
-                ][index],
-                type: `order${index + 1}`,
-                time: faker.date.past(),
-              }))}
-            />
+                  title: formatCreatedAt(item.createdAt),
+                  // Assuming this is the "time" you want to display
+                }))}
+              />
+            </>
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
@@ -296,24 +430,48 @@ console.log(totalMinutes);
               title="Traffic by Site"
               list={[
                 {
-                  name: 'FaceBook',
+                  name: "FaceBook",
                   value: 323234,
-                  icon: <Iconify icon={'eva:facebook-fill'} color="#1877F2" width={32} />,
+                  icon: (
+                    <Iconify
+                      icon={"eva:facebook-fill"}
+                      color="#1877F2"
+                      width={32}
+                    />
+                  ),
                 },
                 {
-                  name: 'Google',
+                  name: "Google",
                   value: 341212,
-                  icon: <Iconify icon={'eva:google-fill'} color="#DF3E30" width={32} />,
+                  icon: (
+                    <Iconify
+                      icon={"eva:google-fill"}
+                      color="#DF3E30"
+                      width={32}
+                    />
+                  ),
                 },
                 {
-                  name: 'Linkedin',
+                  name: "Linkedin",
                   value: 411213,
-                  icon: <Iconify icon={'eva:linkedin-fill'} color="#006097" width={32} />,
+                  icon: (
+                    <Iconify
+                      icon={"eva:linkedin-fill"}
+                      color="#006097"
+                      width={32}
+                    />
+                  ),
                 },
                 {
-                  name: 'Twitter',
+                  name: "Twitter",
                   value: 443232,
-                  icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} />,
+                  icon: (
+                    <Iconify
+                      icon={"eva:twitter-fill"}
+                      color="#1C9CEA"
+                      width={32}
+                    />
+                  ),
                 },
               ]}
             />
@@ -323,11 +481,11 @@ console.log(totalMinutes);
             <AppTasks
               title="Tasks"
               list={[
-                { id: '1', label: 'Create FireStone Logo' },
-                { id: '2', label: 'Add SCSS and JS files if required' },
-                { id: '3', label: 'Stakeholder Meeting' },
-                { id: '4', label: 'Scoping & Estimations' },
-                { id: '5', label: 'Sprint Showcase' },
+                { id: "1", label: "Create FireStone Logo" },
+                { id: "2", label: "Add SCSS and JS files if required" },
+                { id: "3", label: "Stakeholder Meeting" },
+                { id: "4", label: "Scoping & Estimations" },
+                { id: "5", label: "Sprint Showcase" },
               ]}
             />
           </Grid>

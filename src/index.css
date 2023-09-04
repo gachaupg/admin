@@ -2,3 +2,5 @@
   background-color: rgb(43, 226, 125);
   color: whitesmoke !important;
 }
+/* The following line can be included in a src/App.scss */
+@import '~bootstrap/scss/bootstrap';

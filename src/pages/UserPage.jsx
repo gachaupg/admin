@@ -15,7 +15,8 @@ const TABLE_HEAD = [
   { id: 'isAdmin', label: 'Verified', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: 'email', label: 'Email', alignRight: false },
-  { id: 'delete', label: 'Delete', alignRight: false },
+  { id: 'delete', label: 'Operations', alignRight: false },
+  // { id: 'block', label: 'Block', alignRight: false },
 
   { id: '' },
 ];
@@ -155,7 +156,7 @@ export default function UserPage() {
         <title> User | Minimal UI </title>
       </Helmet>
 
-      <Container>
+      <Container >
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             User
@@ -165,7 +166,7 @@ export default function UserPage() {
           </Button> */}
         </Stack>
 
-        <Card>
+        <Card  >
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
 
           <Scrollbar>
@@ -182,7 +183,7 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const {_id, name, phone, status, email, avatarUrl, isAdmin } = row;
+                    const {_id, name, phone, status,block, email, avatarUrl, isAdmin } = row;
                     const selectedUser = selected.indexOf(_id) !== -1;
 
                     return (
@@ -209,6 +210,7 @@ export default function UserPage() {
                         <TableCell align="left">{!status ? 'Active' : 'Blocked'}</TableCell>
                         </TableCell>
                         <TableCell align="left">{excerpt(email) }</TableCell>
+                        {/* <TableCell align="left">TableCell> */}
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
@@ -282,7 +284,13 @@ export default function UserPage() {
           },
         }}
       >
+         <MenuItem>
+        
+        <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
+       Block
+      </MenuItem>
         <MenuItem>
+        
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
           Edit
         </MenuItem>

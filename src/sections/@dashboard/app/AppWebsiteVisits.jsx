@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes, { any } from 'prop-types';
 import ReactApexChart from 'react-apexcharts';
 // @mui
 import { Card, CardHeader, Box } from '@mui/material';
@@ -17,9 +17,9 @@ AppWebsiteVisits.propTypes = {
 export default function AppWebsiteVisits({ title, subheader, chartLabels, chartData, ...other }) {
   const chartOptions = useChart({
     plotOptions: { bar: { columnWidth: '16%' } },
-    fill: { type: chartData.map((i) => i.fill) },
+    // fill: { type: chartData.map((i) => i.fill) },
     labels: chartLabels,
-    xaxis: { type: 'datetime' },
+    xaxis: { type: any },
     tooltip: {
       shared: true,
       intersect: false,

@@ -11,6 +11,7 @@ import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import ProductsList from './pages/ProductsList';
 import NewProduct from './pages/NewProduct';
+import Orders from './pages/Orders';
 
 // ----------------------------------------------------------------------
 
@@ -26,6 +27,7 @@ export default function Router() {
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'productslist', element: <ProductsList /> },
+        { path: 'orders', element: <Orders /> },
       ],
     },
     {
