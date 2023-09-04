@@ -28,3 +28,159 @@ padding: 0% !important;
   background-color: rgb(43, 226, 125);
   color: whitesmoke !important;
 }
+
+
+#root {
+  max-width: 100% !important;
+  padding: 0% !important;
+}
+
+.MuiContainer-root {
+ padding: 10px;
+}
+
+
+/* .MuiPaper-root.MuiCard-root  */
+.cardsdash{
+  display: flex ;
+  flex-direction: row ;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  color: white;
+  
+}
+
+
+.css-1j5s3cl, .css-i13vcv,.css-8145p1,.css-189e0nv {
+  margin-left: 10px;
+  margin-right: 16%;
+}
+
+
+.css-bbmev7{
+  background-color: rgb(32, 32, 32) ;
+  color: white !important;
+  margin:0%;
+  border: 0;
+
+ 
+}
+.css-v475nq-MuiButtonBase-root-MuiListItemButton-root.active {
+  color: #ffffff;
+  background-color: red;
+  font-weight: 700;
+}
+.css-v475nq-MuiButtonBase-root-MuiListItemButton-root{
+color: #ffffff;
+}
+
+.css-bbmev7{
+  background-color: rgb(32, 32, 32) ;
+  color: white !important;
+  margin:0%;
+  border: 0;
+
+
+ 
+}
+.css-1tfylnl-MuiToolbar-root{
+  background-color: rgb(21, 21, 21);
+
+ padding-left: -10px;
+  border: 0;
+  /* margin-left: -100px; */
+}
+
+
+.css-10650aq { /*this is the main one*/
+  margin-left: 0% !important;
+  /* padding: 0px !important; */
+  border: 0;
+}
+.css-1byr0tz{
+  margin-top: 0px;
+
+}
+.css-bbmev7 .simplebar-content{
+  margin: 0%;
+  padding: 0%;
+  border: 0%;
+  /* padding-right: -30px !important;  */
+}
+.css-1byr0tz {
+  margin-top: 0px;
+  background-color: white;
+}
+
+.cardppl {
+  width: 100%; 
+  padding: 20px;
+  background-color: #ffffff; 
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1), 0px -3px 6px rgba(0, 0, 0, 0.1);; 
+  margin: 20px auto; 
+  margin-left: 20px;
+  
+}
+ 
+.cardppl table {
+  width: 100%;
+  border-collapse: collapse; 
+  border: 2px solid #333; 
+  font-size: 15px;
+}
+
+
+.cardppl table th {
+  background-color: #333; 
+  color: white; 
+  padding: 10px; 
+  text-align: center; 
+  border-bottom: 2px solid #555; 
+}
+
+
+.cardppl table td {
+  padding: 8px; 
+  border: 1px solid #ddd;
+}
+
+
+.cardppl table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    display: block;
+    max-height: 300px; 
+    overflow: auto;
+  }
+}
+
+
+
+@media (max-width: 768px){
+.css-1j5s3cl, .css-i13vcv,.css-8145p1,.css-189e0nv {
+  margin-left: 30px;
+  margin-right: 23% !important;
+}
+.css-uwgp8g-MuiTypography-root {
+  padding-top: 20px !important;
+}
+}
+
+
+.css-43vjul-MuiPaper-root-MuiDrawer-paper {
+  background-color: #1f1e1e;
+}
+

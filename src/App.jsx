@@ -15,6 +15,8 @@ import { useDispatch } from 'react-redux';
 import { loadUser } from './slices/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+/* The following line can be included in a src/App.scss */
 function App() {
   const [count, setCount] = useState(0)
   const dispatch = useDispatch();
