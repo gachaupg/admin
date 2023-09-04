@@ -378,7 +378,7 @@ export default function DashboardAppPage() {
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentSubject
               title="Current Subject"
-              chartLabels={['Monday', 'Tuesday', 'Wenesday', 'Thursday', 'Friday', 'Saturday']}
+              chartLabels={['Monday', 'Tuesday', 'Wenesday', 'Thursday', 'Friday', 'Saturday','Friday']}
               chartData={[
                 { name: 'Amount', data: [TotalDay,TotalDay,TotalDay] },
                 { name: 'Amount', data: [TotalDay,TotalDay,TotalDay] },
