@@ -96,7 +96,7 @@ OrderItem.propTypes = {
 };
 
 function OrderItem({ item, isLast }) {
-  const { type, title,name, time } = item;
+  const { type, title,name,amount, time } = item;
   return (
     <TimelineItem>
       <TimelineSeparator>
@@ -114,6 +114,8 @@ function OrderItem({ item, isLast }) {
 
       <TimelineContent>
       <Typography variant="subtitle2">{title}</Typography>
+      <Typography variant="subtitle2">${amount}</Typography>
+
       <Typography variant="subtitle2">{name}</Typography>
 
         <Typography variant="caption" sx={{ color: 'text.secondary' }}>

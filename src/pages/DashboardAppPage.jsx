@@ -278,27 +278,28 @@ export default function DashboardAppPage() {
            })} */}
             <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FE0000"}}
          
-          title="Weekly Sales" total={714000} 
+         title="Total amount" total={`$${totalPrice}`}
+
          
-          icon={'ant-design:android-filled'} />
+          icon={'ant-design:aroid-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FEC400"}}
-             title="New Users" total={orders.length} color="info" icon={'ant-design:apple-filled'} />
+             title="New Users" total={orders.length} color="info" icon={'ant-design:ape-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary className="cardsdash"
             style={{backgroundColor:"#00D247"}}
-            title="Item Orders" total={users.length} color="warning" icon={'ant-design:windows-filled'} />
+            title="Item Orders" total={users.length} color="warning" icon={'ant-design:winws-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
             
             <AppWidgetSummary  className="cardsdash"
              style={{backgroundColor:"#2669FE"}}
-            title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+            title=" Toal Products " total={products.length} color="error" icon={'ant-design:g-filled'} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
@@ -331,7 +332,7 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits 
-              title="Current Visits"
+              title="amounts"
               chartData={[
                 { label: "Amount", value: totalPrice },
                 { label: "Users", value: orders.length },
@@ -348,7 +349,7 @@ export default function DashboardAppPage() {
           </Grid>
  <Grid item xs={12} md={6} lg={8}>
         <AppConversionRates
-              title="Five Last Amount Earned"
+              title="Yearly analysis"
               subheader="Monthhs analysis"
               chartData={[
                 { label: 'january', value: totalPrice },
@@ -407,14 +408,15 @@ export default function DashboardAppPage() {
 
 <div className='cardppl'>
   <div className='table-wrapper'>
+  List of Orders
+
     <MDBTable className='table'>
-      <caption>List of users</caption>
       <MDBTableHead>
         <tr>
           <th>Name</th>
           <th>Email</th>
           <th>Address</th>
-          <th>Handle</th>
+          <th>Amount</th>
         </tr>
       </MDBTableHead>
       <MDBTableBody>
@@ -423,7 +425,8 @@ export default function DashboardAppPage() {
             <td>{user.name}</td>
             <td>{user.email}</td>
             <td>{user.address}</td>
-            <td>1</td>
+            <td> ${user.cartTotalAmount}</td>
+            
           </tr>
         ))}
       </MDBTableBody>
@@ -439,17 +442,11 @@ export default function DashboardAppPage() {
           <Grid item xs={12} md={6} lg={4}>
             <AppOrderTimeline
               title="Order Timeline"
-              list={[...Array(5)].map((_, index) => ({
+              list={week.map((i, index) => ({
                 id: faker.datatype.uuid(),
-                title: [
-                  '1983, orders, $4220',
-                  '12 Invoices have been paid',
-                  'Order #37745 from September',
-                  'New order placed #XF-2356',
-                  'New order placed #XF-2346',
-                ][index],
-                type: `order${index + 1}`,
-                time: faker.date.past(),
+                title:i.email,
+                amount:i.cartTotalAmount,
+                name:i.createdAt,
               }))}
             />
           </Grid>
@@ -506,16 +503,13 @@ export default function DashboardAppPage() {
             />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
-            <AppTasks
-              title="Tasks"
-              list={[
-                { id: "1", label: "Create FireStone Logo" },
-                { id: "2", label: "Add SCSS and JS files if required" },
-                { id: "3", label: "Stakeholder Meeting" },
-                { id: "4", label: "Scoping & Estimations" },
-                { id: "5", label: "Sprint Showcase" },
-              ]}
+          <Grid item xs={12} md={6} lg={4}>
+          <AppOrderTimeline
+              title="Say Hii to news"
+              list={week.map((i, index) => ({
+              id: faker.datatype.uuid(),
+              amount:i.email,
+              }))}
             />
           </Grid>
         </Grid>

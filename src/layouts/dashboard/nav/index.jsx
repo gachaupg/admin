@@ -56,7 +56,23 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
-        <Logo />
+      <div>
+              <Link to="/">
+                <img
+                  className="logo-text"
+                  style={{
+                    margin: ".2rem",
+                    width: "3.5rem",
+                    height: "3.5rem",
+                    border: "none",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                  src="https://res.cloudinary.com/pitz/image/upload/v1693046138/Capture01_hyu8ub.png"
+                  alt=""
+                />
+              </Link>
+            </div>
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
