@@ -25,7 +25,7 @@ export default function ProductsPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Products  </title>
+        <title> Dashboard: Products </title>
       </Helmet>
 
       <Container>
