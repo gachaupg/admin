@@ -28,7 +28,8 @@ function App() {
 
   return (
     <>
-      <HelmetProvider>
+    <div style={{fontSize:'1.5rem'}}>
+    <HelmetProvider>
       <BrowserRouter>
       <ToastContainer />
         <ThemeProvider>
@@ -39,6 +40,8 @@ function App() {
       </BrowserRouter>
       <Footer/>
     </HelmetProvider>
+    </div>
+     
     </>
   )
 }
