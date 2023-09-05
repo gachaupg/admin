@@ -75,18 +75,18 @@ export default function Nav({ openNav, onCloseNav }) {
             </div>
       </Box>
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      <Box sx={{ mb: 4, mx: 2.5 }}>
         <Link underline="none">
           
           <StyledAccount className='accounts-name' >
             <Avatar src="https://res.cloudinary.com/pitz/image/upload/v1693412492/223223f5-5488-48db-a3e4-0e218c8022d8_ntr7dl.jpg" style={{objectFit:'contain'}} alt="photoURL" />
 
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'black' }}>
+            <Box sx={{ ml: 1 }}>
+              <Typography style={{fontSize:'1.2rem'}} variant="subtitle2" sx={{ color: 'black' }}>
               {user.name}
               </Typography>
 
-              <Typography variant="body2" sx={{ color: 'text.primary' }}>
+              <Typography style={{fontSize:'1rem'}} variant="body2" sx={{ color: 'text.primary' }}>
                 {user.email}
               </Typography>
             </Box>
