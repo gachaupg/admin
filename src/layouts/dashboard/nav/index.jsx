@@ -82,11 +82,11 @@ export default function Nav({ openNav, onCloseNav }) {
             <Avatar src="https://res.cloudinary.com/pitz/image/upload/v1693412492/223223f5-5488-48db-a3e4-0e218c8022d8_ntr7dl.jpg" style={{objectFit:'contain'}} alt="photoURL" />
 
             <Box sx={{ ml: 1 }}>
-              <Typography style={{fontSize:'1.2rem'}} variant="subtitle2" sx={{ color: 'black' }}>
+              <Typography style={{fontSize:'1.3rem'}} variant="subtitle2" sx={{ color: 'black' }}>
               {user.name}
               </Typography>
 
-              <Typography style={{fontSize:'1rem'}} variant="body2" sx={{ color: 'text.primary' }}>
+              <Typography style={{fontSize:'1.2rem'}} variant="body2" sx={{ color: 'text.primary' }}>
                 {user.email}
               </Typography>
             </Box>
@@ -139,7 +139,7 @@ export default function Nav({ openNav, onCloseNav }) {
           PaperProps={{
             sx: {
               width: NAV_WIDTH,
-              bgcolor: 'background.default',
+              // bgcolor: 'background.default',
               borderRightStyle: 'dashed',
             },
           }}

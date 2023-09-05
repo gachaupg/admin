@@ -84,7 +84,7 @@ color: #ffffff;
  
 }
 .css-1tfylnl-MuiToolbar-root{
-  background-color: rgb(21, 21, 21);
+  background-color: rgb(21, 21, 21) !important;
 
  padding-left: -10px;
   border: 0;

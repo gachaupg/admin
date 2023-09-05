@@ -263,7 +263,7 @@ export default function DashboardAppPage() {
       </Helmet>
 
       <Container maxWidth="xl" >
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography style={{fontSize:'1.5rem'}} variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome back {user.name}
         </Typography>
 
