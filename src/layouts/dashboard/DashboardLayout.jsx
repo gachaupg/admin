@@ -15,12 +15,15 @@ const StyledRoot = styled('div')({
   display: 'flex',
   minHeight: '100%',
   overflow: 'hidden',
+  fontSize:'1.3rem'
 });
 
 const Main = styled('div')(({ theme }) => ({
   flexGrow: 1,
   overflow: 'auto',
   minHeight: '100%',
+  
+  fontSize:'1.3rem',
   paddingTop: APP_BAR_MOBILE + 24,
   paddingBottom: theme.spacing(10),
   [theme.breakpoints.up('lg')]: {
@@ -36,12 +39,12 @@ export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
 
   return (
-    <StyledRoot>
-      <Header onOpenNav={() => setOpen(true)} />
+    <StyledRoot >
+      <Header s onOpenNav={() => setOpen(true)} />
 
       <Nav openNav={open} onCloseNav={() => setOpen(false)} />
 
-      <Main>
+      <Main >
         <Outlet />
       </Main>
     </StyledRoot>

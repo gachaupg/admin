@@ -263,11 +263,11 @@ export default function DashboardAppPage() {
       </Helmet>
 
       <Container maxWidth="xl" >
-        <Typography style={{fontSize:'1.5rem'}} variant="h4" sx={{ mb: 5 }}>
+        <Typography style={{fontSize:'1.7rem'}} variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome back {user.name}
         </Typography>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={3}  >
           <Grid item xs={12} sm={6} md={3}  >
            {/* {users.map((mary)=>{
             return(
@@ -276,7 +276,7 @@ export default function DashboardAppPage() {
               </>
             )
            })} */}
-            <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FE0000"}}
+            <AppWidgetSummary  className="cardsdash" style={{backgroundColor:"#FE0000"}}
          
          title="Total amount" total={`$${totalPrice}`}
 
@@ -285,13 +285,13 @@ export default function DashboardAppPage() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FEC400"}}
+            <AppWidgetSummary className="cardsdash" style={{backgroundColor:"#FEC400",fontSize:'1.9rem'}}
              title="New Users" total={orders.length} color="info" icon={'ant-design:ape-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary className="cardsdash"
-            style={{backgroundColor:"#00D247"}}
+            style={{backgroundColor:"#00D247",fontSize:'1.9rem'}}
             title="Item Orders" total={users.length} color="warning" icon={'ant-design:winws-filled'} />
           </Grid>
 
@@ -410,7 +410,7 @@ export default function DashboardAppPage() {
   <div className='table-wrapper'>
   List of Orders
 
-    <MDBTable className='table'>
+    <MDBTable style={{fontSize:'1.6rem'}} className='table'>
       <MDBTableHead>
         <tr>
           <th>Name</th>
@@ -425,7 +425,7 @@ export default function DashboardAppPage() {
             <td>{user.name}</td>
             <td>{user.email}</td>
             <td>{user.address}</td>
-            <td> ${user.cartTotalAmount}</td>
+            <td > ${user.cartTotalAmount}</td>
             
           </tr>
         ))}

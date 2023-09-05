@@ -112,13 +112,13 @@ function OrderItem({ item, isLast }) {
         {isLast ? null : <TimelineConnector />}
       </TimelineSeparator>
 
-      <TimelineContent>
-      <Typography variant="subtitle2">{title}</Typography>
-      <Typography variant="subtitle2">${amount}</Typography>
+      <TimelineContent >
+      <Typography style={{fontSize:'1.5rem'}} variant="subtitle2">{title}</Typography>
+      <Typography style={{fontSize:'1.5rem'}} variant="subtitle2">${amount}</Typography>
 
-      <Typography variant="subtitle2">{name}</Typography>
+      <Typography style={{fontSize:'1.5rem'}} variant="subtitle2">{name}</Typography>
 
-        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+        <Typography style={{fontSize:'1.5rem'}} variant="caption" sx={{ color: 'text.secondary' }}>
           {fDateTime(time)}
         </Typography>
       </TimelineContent>

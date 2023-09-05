@@ -31,11 +31,11 @@ export default function ProductsPage() {
       <Container>
         <div style={{display:'flex' , flexWrap:'wrap', alignItems:'center',
       justifyContent:'space-around'}}>
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography style={{fontSize:'1.5rem'}}  variant="h4" sx={{ mb: 5 }}>
           Products
         </Typography>
         <Link to='/new-product'>
-        <Button style={{backgroundColor:'green',color:'white'}}  variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+        <Button  style={{backgroundColor:'green',color:'white',fontSize:'1.5rem'}}  variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Product
           </Button>
         </Link>
@@ -43,8 +43,8 @@ export default function ProductsPage() {
         </div>
         
 
-        <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
-          <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+        <Stack style={{fontSize:'1.5rem'}}  direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
+          <Stack style={{fontSize:'1.5rem'}}  direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
             <ProductFilterSidebar
               openFilter={openFilter}
               onOpenFilter={handleOpenFilter}

@@ -159,7 +159,7 @@ export default function Orders() {
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
+          <Typography style={{fontSize:'1.5rem'}}  variant="h4" gutterBottom>
           All  Orders
           </Typography>
           {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
@@ -195,20 +195,20 @@ export default function Orders() {
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Typography variant="subtitle2" noWrap>
+                            <Typography style={{fontSize:'1.5rem'}}  variant="subtitle2" noWrap>
                               {name}
                             </Typography>
                           </Stack>
                         </TableCell>
 
 
-                        <TableCell align="left">{excerpt(email) }</TableCell>
+                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{excerpt(email) }</TableCell>
 
-                        <TableCell align="left">{address}</TableCell>
+                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{address}</TableCell>
                         {/* <TableCell align="left">{status ? 'Ac' : 'User'}</TableCell> */}
 
                         <TableCell align="left">
-                        <TableCell align="left"> ${cartTotalAmount}</TableCell>
+                        <TableCell style={{fontSize:'1.5rem'}}  align="left"> ${cartTotalAmount}</TableCell>
                         </TableCell>
                         {/* <TableCell align="left"></TableCell> */}
 
@@ -234,11 +234,11 @@ export default function Orders() {
                             textAlign: 'center',
                           }}
                         >
-                          <Typography variant="h6" paragraph>
+                          <Typography style={{fontSize:'1.5rem'}}  variant="h6" paragraph>
                             Not found
                           </Typography>
 
-                          <Typography variant="body2">
+                          <Typography style={{fontSize:'1.5rem'}}  variant="body2">
                             No results found for &nbsp;
                             <strong>&quot;{filterName}&quot;</strong>.
                             <br /> Try checking for typos or using complete words.

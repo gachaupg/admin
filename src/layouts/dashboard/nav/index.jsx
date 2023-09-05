@@ -25,7 +25,7 @@ const StyledAccount = styled('div')(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(2, 2.5),
   borderRadius: Number(theme.shape.borderRadius) * 1.5,
-  backgroundColor: alpha(theme.palette.grey[500], 0.12),
+
 }));
 
 // ----------------------------------------------------------------------
@@ -126,6 +126,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
   return (
     <Box
+    style={{fontSize:'1.5rem'}} 
       component="nav"
       sx={{
         flexShrink: { lg: 0 },
@@ -134,6 +135,7 @@ export default function Nav({ openNav, onCloseNav }) {
     >
       {isDesktop ? (
         <Drawer
+        style={{fontSize:'1.5rem'}} 
           open
           variant="permanent"
           PaperProps={{
@@ -141,20 +143,23 @@ export default function Nav({ openNav, onCloseNav }) {
               width: NAV_WIDTH,
               // bgcolor: 'background.default',
               borderRightStyle: 'dashed',
+              fontSize:'1.5rem'
             },
           }}
         >
-          {renderContent}
+         <p  style={{fontSize:'1.5rem'}}  > {renderContent }</p>
         </Drawer>
       ) : (
         <Drawer
+        style={{fontSize:'1.5rem'}} 
           open={openNav}
           onClose={onCloseNav}
           ModalProps={{
             keepMounted: true,
           }}
           PaperProps={{
-            sx: { width: NAV_WIDTH },
+            sx: { width: NAV_WIDTH ,  fontSize:'1.3rem'},
+          
           }}
         >
           {renderContent}
