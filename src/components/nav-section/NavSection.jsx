@@ -16,7 +16,7 @@ export default function NavSection({ data = [], ...other }) {
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
         {data.map((item) => (
-          <NavItem style={{fontSize:'3rem'}} key={item.title} item={item} />
+          <NavItem style={{fontSize:'1rem'}} key={item.title} item={item} />
         ))}
       </List>
     </Box>
@@ -41,20 +41,20 @@ function NavItem({ item }) {
         '&.active': {
           color: 'white',
           
-          fontSize:'1.5rem',
+          fontSize:'1rem',
           fontWeight: 'fontWeightBold',
           backgroundColor:'red'
           
         },
       }}
     >
-      <StyledNavItemIcon style={{ fontSize:'1.5rem',
+      <StyledNavItemIcon style={{ fontSize:'1rem',
          color: 'white',
-         fontSize:'1.5rem',}}>{icon && icon}</StyledNavItemIcon>
+         fontSize:'1rem',}}>{icon && icon}</StyledNavItemIcon>
 
-      <ListItemText style={{ fontSize:'1.5rem',
+      <ListItemText style={{ fontSize:'1rem',
          color: 'white',
-         fontSize:'1.5rem',}} disableTypography primary={title} />
+         fontSize:'1rem',}} disableTypography primary={title} />
 
       {info && info}
     </StyledNavItem>

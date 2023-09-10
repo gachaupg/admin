@@ -169,11 +169,11 @@ const dispatch=useDispatch()
 
       <Container >
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography style={{fontSize:'1.5rem'}}  variant="h4" gutterBottom>
+          <Typography style={{fontSize:'1.3rem'}}  variant="h4" gutterBottom>
            Products
           </Typography>
           <Link to='/new-product'>
-        <Button   style={{backgroundColor:'green',color:'white',fontSize:'1.5rem'}}  variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+        <Button   style={{backgroundColor:'green',color:'white',fontSize:'1.3rem'}}  variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Product
           </Button>
         </Link>
@@ -207,22 +207,22 @@ const dispatch=useDispatch()
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Typography style={{fontSize:'1.5rem'}}  variant="subtitle2" noWrap>
+                            <Typography style={{fontSize:'1.3rem'}}  variant="subtitle2" noWrap>
                               { excerpt(name)}
                             </Typography>
                           </Stack>
                         </TableCell>
 
 
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">$ {price}</TableCell>
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">$ {price}</TableCell>
 
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{excerpt(desc)}</TableCell>
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">{excerpt(desc)}</TableCell>
                         {/* <TableCell align="left">{status ? 'Ac' : 'User'}</TableCell> */}
 
                         <TableCell align="left">
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{brand}</TableCell>
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">{brand}</TableCell>
                         </TableCell>
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{task}</TableCell>
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">{task}</TableCell>
                         <TableCell
                     key={row._id}
                     style={{ color: "red", cursor: "pointer" }}
@@ -254,11 +254,11 @@ const dispatch=useDispatch()
                             textAlign: 'center',
                           }}
                         >
-                          <Typography style={{fontSize:'1.5rem'}}  variant="h6" paragraph>
+                          <Typography style={{fontSize:'1.3rem'}}  variant="h6" paragraph>
                             Not found
                           </Typography>
 
-                          <Typography style={{fontSize:'1.5rem'}}  variant="body2">
+                          <Typography style={{fontSize:'1.3rem'}}  variant="body2">
                             No results found for &nbsp;
                             <strong>&quot;{filterName}&quot;</strong>.
                             <br /> Try checking for typos or using complete words.

@@ -410,7 +410,7 @@ export default function DashboardAppPage() {
   <div className='table-wrapper'>
   List of Orders
 
-    <MDBTable style={{fontSize:'1.6rem'}} className='table'>
+    <MDBTable style={{fontSize:'1.2rem'}} className='table'>
       <MDBTableHead>
         <tr>
           <th>Name</th>

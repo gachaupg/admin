@@ -121,13 +121,16 @@ const productsSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+    
     [productsDelete.fulfilled]: (state, action) => {
-      const newList = state.items.filter(
-        (item) => item._id != action.payload._id
-      );
-      state.items = newList;
-      state.deleteStatus = "success";
-      toast.error("Product Deleted!");
+      const newList = state.items.filter((item) => item._id !== action.payload._id);
+      return {
+        ...state,
+        items: newList,
+        deleteStatus: "success"
+      };
+      
     },
     [productsDelete.rejected]: (state, action) => {
       state.deleteStatus = "rejected";

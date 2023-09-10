@@ -153,12 +153,12 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title style={{fontSize:'1.5rem'}}> User | Minimal UI </title>
+        <title style={{fontSize:'1.3rem'}}> User | Minimal UI </title>
       </Helmet>
 
       <Container >
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography style={{fontSize:'1.5rem'}} variant="h4" gutterBottom>
+          <Typography style={{fontSize:'1.3rem'}} variant="h4" gutterBottom>
             User
           </Typography>
           {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
@@ -170,7 +170,7 @@ export default function UserPage() {
           <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
 
           <Scrollbar>
-            <TableContainer style={{fontSize:'1.5rem'}} sx={{ minWidth: 800 }}>
+            <TableContainer style={{fontSize:'1.3rem'}} sx={{ minWidth: 800 }}>
               <Table>
                 <UserListHead
                   order={order}
@@ -181,7 +181,7 @@ export default function UserPage() {
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
-                <TableBody style={{fontSize:'1.5rem'}}>
+                <TableBody style={{fontSize:'1.3rem'}}>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                     const {_id, name, phone, status,block, email, avatarUrl, isAdmin } = row;
                     const selectedUser = selected.indexOf(_id) !== -1;
@@ -194,25 +194,25 @@ export default function UserPage() {
 
                         <TableCell  component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Typography style={{fontSize:'1.5rem'}}  variant="subtitle2" noWrap>
+                            <Typography style={{fontSize:'1.3rem'}}  variant="subtitle2" noWrap>
                               {name}
                             </Typography>
                           </Stack>
                         </TableCell>
 
 
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{phone}</TableCell>
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">{phone}</TableCell>
 
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{isAdmin ? 'Admin' : 'User'}</TableCell>
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">{isAdmin ? 'Admin' : 'User'}</TableCell>
                         {/* <TableCell align="left">{status ? 'Ac' : 'User'}</TableCell> */}
 
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{!status ? 'Active' : 'Blocked'}</TableCell>
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">{!status ? 'Active' : 'Blocked'}</TableCell>
                         </TableCell>
-                        <TableCell style={{fontSize:'1.5rem'}}  align="left">{excerpt(email) }</TableCell>
+                        <TableCell style={{fontSize:'1.3rem'}}  align="left">{excerpt(email) }</TableCell>
                         {/* <TableCell align="left">TableCell> */}
 
-                        <TableCell style={{fontSize:'1.5rem'}}  align="right">
+                        <TableCell style={{fontSize:'1.3rem'}}  align="right">
                           <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
                             <Iconify icon={'eva:more-vertical-fill'} />
                           </IconButton>
